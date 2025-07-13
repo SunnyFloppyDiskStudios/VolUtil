@@ -17,13 +17,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let contentView = ContentView()
 
         popover.contentSize = NSSize(width: 250, height: 300)
-        popover.behavior = .transient
+        popover.behavior = .applicationDefined
         popover.contentViewController = NSHostingController(rootView: contentView)
 
-        statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
+        statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
 
         if let button = statusItem.button {
-            button.image = NSImage(systemSymbolName: "star", accessibilityDescription: "VolUtil")
+            button.image = NSImage(systemSymbolName: "hifispeaker", accessibilityDescription: "VolUtil")
             button.action = #selector(togglePopover(_:))
         }
     }
