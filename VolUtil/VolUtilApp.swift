@@ -9,9 +9,16 @@ import SwiftUI
 
 @main
 struct VolUtilApp: App {
+    @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+
     var body: some Scene {
-        WindowGroup {
+//        Window("About", id: "about") {
+//            AboutView()
+//        }.defaultSize(width: 375, height: 500)
+        
+        Settings {
             ContentView()
         }
     }
 }
+
