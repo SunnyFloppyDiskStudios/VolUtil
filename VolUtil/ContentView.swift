@@ -13,6 +13,8 @@ struct ContentView: View {
             setSystemVolume(systemVolume)
         }
     }
+    
+    @State private var inputVolume: Float = 0
 
     
     
@@ -47,7 +49,17 @@ struct ContentView: View {
             
             Text("Microphone Input Volume")
             
-            // slider
+            Slider(value: $inputVolume, in: 0...1) {}
+            minimumValueLabel: {
+                Image(systemName: "microphone.slash.fill")
+            } maximumValueLabel: {
+                Image(systemName: "microphone.fill")
+            }
+            .frame(width: 150)
+            .onChange(of: inputVolume) { newValue in
+                setInputVolume(newValue)
+            }
+            .disabled(!inputVolumeAdjustable())
             
             Divider()
             
@@ -66,6 +78,7 @@ struct ContentView: View {
         .padding(.bottom)
         .onAppear {
             systemVolume = getSystemVolume()
+            inputVolume = getInputVolume()
         }
         .onChange(of: systemVolume) { newValue in
             setSystemVolume(newValue)
